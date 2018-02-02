@@ -6,7 +6,11 @@ import selectExpenses from '../selectors/Texpenses';
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
+
     <img src="/images/kiscica.jpg" />
+    // TODO!!!!!!!!!!! <Translate value="application.title"/> 
+
+
     {props.expenses.map((expense) => {
       return <ExpenseListItem key={expense.id} {...expense} />;
     })}
