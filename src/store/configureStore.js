@@ -40,7 +40,7 @@ export default () => {
       export_1: 'Exporteer %{count} ding',
       two_lines: 'Regel 1<br />Regel 2',
       literal_two_lines: 'Regel 1\
-  Regel 2'
+Regel 2'
     },
 
     hu: {
@@ -56,7 +56,7 @@ export default () => {
       export_1: 'Exportálva %{count} elem',
       two_lines: 'Sor 1<br />Sor 2',
       literal_two_lines: 'Sor 1\
-  Sor 2'
+Sor 2'
     }
   };
 
@@ -66,15 +66,13 @@ export default () => {
       filters: filtersReducer,
       i18n: i18nReducer
     }),
-    applyMiddleware(thunk),
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(thunk)
   );
   syncTranslationWithStore(store);
 
-  // // TODO!!!!!!!!!!!
-  // store.dispatch(loadTranslations(translationsObject));
-  // store.dispatch(setLocale('en'));
-
+  store.dispatch(loadTranslations(translationsObject));
+  store.dispatch(setLocale('hu'));
 
   return store;
 };
