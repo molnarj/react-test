@@ -73,6 +73,5 @@ Sor 2'
 
   store.dispatch(loadTranslations(translationsObject));
   store.dispatch(setLocale('hu'));
-
   return store;
 };
