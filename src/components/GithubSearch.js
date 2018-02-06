@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 
 import { call, put, select, takeLatest } from 'redux-saga/effects';
 import { LOAD_REPOS } from '../constants/GithubSearchConstants';
