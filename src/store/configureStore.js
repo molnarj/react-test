@@ -1,13 +1,24 @@
+import "babel-polyfill";
+
 import { createStore, combineReducers } from 'redux';
 import expensesReducer from '../reducers/Texpenses';
 import filtersReducer from '../reducers/Tfilters';
+import counterReducer from '../reducers/AsyncTest';
 
 //---
+// lang
 import { applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { loadTranslations, setLocale, syncTranslationWithStore, i18nReducer } from 'react-redux-i18n';
 import { setTextFilter } from '../actions/Tfilters';
 //---
+
+//--
+// saga
+import createSagaMiddleware from 'redux-saga';
+import rootSaga from '../sagas/AsyncTestSaga';
+import Counter from '../components/Counter';
+//--
 
 export default () => {
   const translationsObject = {
@@ -60,17 +71,18 @@ Sor 2'
     }
   };
 
+  const sagaMiddleware = createSagaMiddleware()
   const store = createStore(
     combineReducers({
       expenses: expensesReducer,
       filters: filtersReducer,
+      counter: counterReducer,
       i18n: i18nReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(thunk)
   );
   syncTranslationWithStore(store);
-
   store.dispatch(loadTranslations(translationsObject));
   store.dispatch(setLocale('hu'));
 
