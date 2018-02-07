@@ -3,12 +3,12 @@ export default function counter(state = { count: 0 }, action) {
     case 'INCREMENT':
       return {
         ...state,
-        count: state.count + 1
+        count: state.count + action.payload.delta
       }
     case 'DECREMENT':
       return {
         ...state,
-        count: state.count - 1
+        count: state.count - action.payload.delta
       }
     default:
       return state

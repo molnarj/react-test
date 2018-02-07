@@ -1,19 +1,23 @@
 import { delay } from 'redux-saga'
 import { put, takeEvery } from 'redux-saga/effects'
+import { increment, incrementAsync } from '../actions/AsyncTestPage';
 
 export function* helloSaga() {
     console.log('Hello Sagas!')
 }
 
 // Our worker Saga: will perform the async increment task
-function* incrementAsync() {
+function* delayIncrementAsync(action) {
     yield delay(1000)
-    yield put({ type: 'INCREMENT' })
+    const dynamicValue = 2; //from server
+
+    const valueFromAction = action.payload.defaultDelta; //from original action
+    yield put(increment(dynamicValue || valueFromAction))
 }
 
 // Our watcher Saga: spawn a new incrementAsync task on each INCREMENT_ASYNC
-function* watchIncrementAsync() {
-    yield takeEvery('INCREMENT_ASYNC', incrementAsync)
+function* watchIncrementAsync(action) {
+    yield takeEvery('INCREMENT_ASYNC', delayIncrementAsync)
 }
 
 // notice how we now only export the rootSaga
