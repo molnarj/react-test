@@ -6,6 +6,7 @@ import EditExpensePage from '../components/tEditExpensePage';
 import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
+import AsyncTestPage from '../components/AsyncTestPage';
 
 const AppRouter = () => (
   <BrowserRouter>
@@ -13,6 +14,7 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" component={ExpenseDashboardPage} exact={true} />
+        <Route path="/asynctest" component={AsyncTestPage} />
         <Route path="/create" component={AddExpensePage} />
         <Route path="/edit/:id" component={EditExpensePage} />
         <Route path="/help" component={HelpPage} />

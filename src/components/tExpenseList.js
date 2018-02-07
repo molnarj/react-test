@@ -4,10 +4,10 @@ import ExpenseListItem from './tExpenseListItem';
 import selectExpenses from '../selectors/Texpenses';
 import {Translate, Localize, I18n} from 'react-redux-i18n';
 
-
 const ExpenseList = (props) => (
   <div>
     <h1>Expense List</h1>
+
 
     <img src="/images/kiscica.jpg" />
     <br />
