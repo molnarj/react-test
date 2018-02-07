@@ -17,13 +17,13 @@ class AsyncTestPage extends React.Component {
     super(props);
   }
   inc = () => {
-    this.props.dispatch('INCREMENT');
+    this.props.dispatch({ type: 'INCREMENT' });
   };
   dec = () => {
-    this.props.dispatch('DECREMENT');
+    this.props.dispatch({ type: 'DECREMENT' });
   };
-  async = () => {
-    this.props.dispatch('DECREMENT');
+  incAsync = () => {
+    this.props.dispatch({ type: 'INCREMENT_ASYNC' });
   }
   render() {
     return (
@@ -34,7 +34,9 @@ class AsyncTestPage extends React.Component {
         <Counter
           value={this.props.counter.count}
           onIncrement={this.inc}
-          onDecrement={this.dec} />
+          onDecrement={this.dec}
+          onIncrementAsync={this.incAsync}
+        />
       </div>
     )
   }

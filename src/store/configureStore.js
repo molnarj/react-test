@@ -80,8 +80,10 @@ Sor 2'
       i18n: i18nReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, sagaMiddleware)
   );
+  sagaMiddleware.run(rootSaga);
+
   syncTranslationWithStore(store);
   store.dispatch(loadTranslations(translationsObject));
   store.dispatch(setLocale('hu'));
