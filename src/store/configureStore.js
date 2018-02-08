@@ -18,6 +18,10 @@ import { setTextFilter } from '../actions/Tfilters';
 import createSagaMiddleware from 'redux-saga';
 import rootSaga from '../sagas/AsyncTestSaga';
 import Counter from '../components/Counter';
+
+import apiSaga from '../sagas/API';
+import { getUser } from "../actions/API";
+import apiReducer from "../reducers/API";
 //--
 
 export default () => {
@@ -71,22 +75,26 @@ Sor 2'
     }
   };
 
-  const sagaMiddleware = createSagaMiddleware()
+  const sagaMiddleware = createSagaMiddleware();
   const store = createStore(
     combineReducers({
+      i18n: i18nReducer,
+      api: apiReducer,
       expenses: expensesReducer,
       filters: filtersReducer,
-      counter: counterReducer,
-      i18n: i18nReducer
+      counter: counterReducer
     }),
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
     applyMiddleware(thunk, sagaMiddleware)
   );
   sagaMiddleware.run(rootSaga);
+  sagaMiddleware.run(apiSaga);
 
   syncTranslationWithStore(store);
   store.dispatch(loadTranslations(translationsObject));
   store.dispatch(setLocale('hu'));
+
+  // store.dispatch(getUser(2));
 
   return store;
 };
