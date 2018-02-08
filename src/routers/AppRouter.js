@@ -7,10 +7,12 @@ import HelpPage from '../components/HelpPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 import AsyncTestPage from '../components/AsyncTestPage';
+import LanguagePicker from '../components/LanguagePicker'
 
 const AppRouter = () => (
   <BrowserRouter>
     <div>
+      <LanguagePicker />
       <Header />
       <Switch>
         <Route path="/" component={ExpenseDashboardPage} exact={true} />
