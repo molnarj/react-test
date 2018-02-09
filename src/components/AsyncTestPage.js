@@ -9,6 +9,10 @@ import { getUser } from "../actions/API";
 class AsyncTestPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userId : props.userId || 1
+    };
   }
 
   inc = () => {
@@ -20,9 +24,15 @@ class AsyncTestPage extends React.Component {
   incAsync = () => {
     this.props.dispatch(incrementAsync());
   }
-  getUserAsync = () => {
-    this.props.dispatch(getUser(2));
+  getUserAsync = (event) => {
+    event.preventDefault();
+    this.props.dispatch(getUser(this.state.userId));
   }
+
+  onIdChange = (e) => {
+    const userId = e.target.value;
+    this.setState(() => ({ userId }));
+  };
 
   render() {
     return (
@@ -30,7 +40,14 @@ class AsyncTestPage extends React.Component {
         <h1>Async test page</h1>
 
         <p>API CALL TEST:</p>
-        <button onClick={this.getUserAsync}>GET</button>
+        <form onSubmit={this.getUserAsync}>
+        <input
+          type="number"
+          value={this.state.userId}
+          onChange={this.onIdChange}
+        />
+        <button>GET</button>
+        </form>
         <br />
         <br />
         <p>Counter</p>
