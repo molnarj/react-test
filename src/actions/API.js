@@ -7,12 +7,14 @@ export const getUser = (id) => ({
     }
 });
 
-export const getUserSuccess = (user) => ({
-    type: GET_USER_SUCCESS,
-    payload: {
-        user
+export const getUserSuccess = (user) => {
+    return {
+        type: GET_USER_SUCCESS,
+        payload: {
+            user
+        }
     }
-});
+};
 
 export const getUserError = (error, data) => ({
     type: GET_USER_ERROR,

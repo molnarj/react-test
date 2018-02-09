@@ -12,7 +12,7 @@ const ExpenseList = (props) => (
     <img src="/images/kiscica.jpg" />
     <br />
     <Translate value="application.title"/> 
-    <div title={I18n.t('application.title')}>KISCICA</div>
+    <div title={I18n.t('application.title')}>Tooltip test</div>
 
     {props.expenses.map((expense) => {
       return <ExpenseListItem key={expense.id} {...expense} />;
