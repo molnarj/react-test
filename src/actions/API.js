@@ -1,4 +1,4 @@
-import { GET_USER, GET_USERS, GET_USER_SUCCESS, GET_USER_ERROR, GET_USERS_SUCCESS, GET_USERS_ERROR } from "../constants/API";
+import { GET_USER, GET_USERS, GET_USER_SUCCESS, GET_USER_ERROR, GET_USERS_SUCCESS, GET_USERS_ERROR, POST_POST, POST_POST_SUCCESS } from "../constants/API";
 
 export const getUser = (id) => ({
     type: GET_USER,
@@ -41,7 +41,20 @@ export const getUsersSuccess = (users) => ({
 export const getUsersError = (error, data) => ({
     type: GET_USERS_ERROR,
     payload: {
-        error,
-        data
+        error, data
     }
 });
+
+export const postPost = (userId, title, body) => ({
+    type: POST_POST,
+    payload: {
+        userId, title, body
+    }
+});
+
+export const postPostSuccess = (post) => ({
+    type: POST_POST_SUCCESS,
+    payload: {
+        post
+    }
+})

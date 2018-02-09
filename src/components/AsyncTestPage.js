@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import rootSaga from '../sagas/AsyncTestSaga';
 import Counter from './Counter';
 import {increment, decrement, incrementAsync} from '../actions/AsyncTestPage';
-import { getUser } from "../actions/API";
+import { getUser, postPost } from "../actions/API";
 
 class AsyncTestPage extends React.Component {
   constructor(props) {
@@ -23,6 +23,12 @@ class AsyncTestPage extends React.Component {
   getUserAsync = () => {
     this.props.dispatch(getUser(2));
   }
+  postPostAsync = () => {
+    const timeStamp = new Date().getTime();
+    const title = 'title_' + timeStamp;
+    const body = 'body_' + timeStamp;
+    this.props.dispatch(postPost(1, title, body));
+  }
 
   render() {
     return (
@@ -31,6 +37,7 @@ class AsyncTestPage extends React.Component {
 
         <p>API CALL TEST:</p>
         <button onClick={this.getUserAsync}>GET</button>
+        <button onClick={this.postPostAsync}>POST</button>
         <br />
         <br />
         <p>Counter</p>
