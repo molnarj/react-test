@@ -7,17 +7,14 @@ import { API } from 'redux-saga-rest';
 const authMiddleware = () => function* (req, next) {
     // // request middleware
     // const user = yield select(selectors.user);
-    // const headers = req.headers || new Headers();
+    const headers = req.headers || new Headers();
     // headers.set('Authorization', `Bearer ${user.token}`);
-
     // retrieve the response
     const res = yield next(new Request(req, { headers }));
-
     // // response middleware
     // if (res.status === 401) {
     //     yield put(accountActions.logout());
     // }
-
     // return the response
     return res;
 };
