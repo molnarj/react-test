@@ -1,23 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setLocale } from 'react-redux-i18n';
+import { setLocale, Translate } from 'react-redux-i18n';
 
 
 const LanguagePicker = (props) => (
     <div>
-        LanguageSelector
-      <select onChange={(e) => {
-          
-            props.dispatch(setLocale(e.target.value));
-          }}>
-            <option value="hu" >
-                Magyar
-          </option>
-            <option value="en">
-                English
-          </option>
+        <Translate value="application.LanguageSelector"/> (<Translate value={"application."+props.locale}/>) 
+      <select onChange={(e) => {props.dispatch(setLocale(e.target.value));}}>
+            <option value="hu" >Magyar</option>
+            <option value="en">English</option>
         </select>
     </div>
 );
 
-export default connect()(LanguagePicker);
+const a = (state) =>{
+ return {
+     locale: state.i18n.locale || "hu"
+    };
+};
+export default connect(a)(LanguagePicker);

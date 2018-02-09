@@ -25,7 +25,10 @@ export default () => {
     en: {
       application: {
         title: 'Awesome app with i18n!',
-        hello: 'Hello, %{name}!'
+        hello: 'Hello, %{name}!',
+        hu: 'Hungarian',
+        en: 'English',
+        LanguageSelector: 'Language selector'
       },
       date: {
         long: 'MMMM Do, YYYY'
@@ -57,7 +60,10 @@ Regel 2'
     hu: {
       application: {
         title: 'Csoda app i18n-nel!',
-        hello: 'Szia %{name}!'
+        hello: 'Szia %{name}!',
+        hu: 'Magyar',
+        en: 'Angol',
+        LanguageSelector: 'Nyevválasztó'
       },
       date: {
         long: 'YYYY.MM.DD.'
