@@ -3,12 +3,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import rootSaga from '../sagas/AsyncTestSaga';
 import Counter from './Counter';
-import {increment, decrement, incrementAsync} from '../actions/AsyncTestPage';
+import { increment, decrement, incrementAsync } from '../actions/AsyncTestPage';
 import { getUser, postPost } from "../actions/API";
 
 class AsyncTestPage extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      userId: props.userId || 1
+    };
   }
 
   inc = () => {
@@ -20,8 +24,9 @@ class AsyncTestPage extends React.Component {
   incAsync = () => {
     this.props.dispatch(incrementAsync());
   }
-  getUserAsync = () => {
-    this.props.dispatch(getUser(2));
+  getUserAsync = (event) => {
+    event.preventDefault();
+    this.props.dispatch(getUser(this.state.userId));
   }
   postPostAsync = () => {
     const timeStamp = new Date().getTime();
@@ -30,14 +35,28 @@ class AsyncTestPage extends React.Component {
     this.props.dispatch(postPost(1, title, body));
   }
 
+  onIdChange = (e) => {
+    const userId = e.target.value;
+    this.setState(() => ({ userId }));
+  };
+
   render() {
     return (
       <div>
         <h1>Async test page</h1>
-
         <p>API CALL TEST:</p>
+        <form onSubmit={this.getUserAsync}>
+          <input
+            type="number"
+            value={this.state.userId}
+            onChange={this.onIdChange}
+          />
+          <button>GET</button>
+        </form>
+        <br />
         <button onClick={this.getUserAsync}>GET</button>
         <button onClick={this.postPostAsync}>POST</button>
+
         <br />
         <br />
         <p>Counter</p>
